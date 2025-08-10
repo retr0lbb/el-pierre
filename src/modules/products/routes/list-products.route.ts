@@ -1,9 +1,14 @@
 import type { FastifyInstance } from "fastify";
-import { db } from "../../../db/connection";
+import { listProductsHandler } from "../handlers/list-products.route";
 
 export async function ListProductsRoute(app: FastifyInstance) {
-	app.get("/products", async (request, reply) => {
+	app.get("/products", async (_, reply) => {
 		try {
-		} catch (error) {}
+			const data = await listProductsHandler();
+			reply.status(200).send({ data });
+		} catch (error) {
+			console.log(error);
+			throw error;
+		}
 	});
 }

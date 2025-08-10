@@ -1,8 +1,7 @@
-import { db } from "../../../db/connection";
-import { schemas } from "../../../db/schema";
+import { prisma } from "../../../lib/prisma";
 
 export async function listProductsHandler() {
-	await db.select({
-		id: schemas.products,
-	});
+	const data = await prisma;
+
+	return data;
 }
