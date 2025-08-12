@@ -1,5 +1,5 @@
 import type { FastifyInstance } from "fastify";
-import { listProductsHandler } from "../handlers/list-products.route";
+import { listProductsHandler } from "../handlers/list-products";
 
 export async function ListProductsRoute(app: FastifyInstance) {
 	app.get("/products", async (_, reply) => {

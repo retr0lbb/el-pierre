@@ -13,7 +13,8 @@
 	"devDependencies": {
 		"@types/node": "^24.2.0",
 		"@types/pg": "^8.15.5",
-		"typescript": "^5.9.2"
+		"typescript": "^5.9.2",
+		"vitest": "^3.2.4"
 	},
 	"dependencies": {
 		"@biomejs/biome": "^2.1.4",
