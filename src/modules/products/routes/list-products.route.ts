@@ -1,7 +1,7 @@
 import type { FastifyInstance } from "fastify";
 import { listProductsHandler } from "../handlers/list-products";
 
-export async function ListProductsRoute(app: FastifyInstance) {
+export async function listProductsRoute(app: FastifyInstance) {
 	app.get("/products", async (_, reply) => {
 		try {
 			const data = await listProductsHandler();
