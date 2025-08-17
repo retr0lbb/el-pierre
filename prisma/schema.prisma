@@ -14,6 +14,9 @@ model Category{
   title String @unique
   Product Product[]
 }
+/* 
+  Just for products
+*/
 
 model Product{
   id String @id @default(uuid())
@@ -26,4 +29,52 @@ model Product{
 
   
   @@map("products")
+  ProductVariant ProductVariant[]
+}
+
+model ProductVariant{
+  id String @id @default(uuid())
+  size String
+  qtdStock Int @map("qtd_stock")
+  product Product @relation(fields: [productId], references: [id])
+  productId String
+
+
+  @@map("product_variant")
+}
+
+
+enum Role {
+  BASIC
+  ADMIN
+}
+
+model UserAccount{
+  id String @id @default(uuid())
+  role Role @default(BASIC)
+
+  fullName String @map("full_name")
+  email String
+  password String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime?
+
+  isEmailVerified Boolean @map("is_email_verified")
+  @@map("user_account")
+  Session Session[]
+}
+
+
+model Session{
+  id String @id @default(uuid())
+  token String
+
+  user UserAccount @relation(fields: [userId], references: [id])
+  userId String
+
+  mfaSecret String?
+  expirationDate DateTime @map("expiration_date")
+  hasExpired Boolean @map("has_expired")
+  createdAt DateTime @default(now())
 }
